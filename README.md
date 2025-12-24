@@ -1,42 +1,172 @@
-Correo = " admin@medicita.com ", Nombre = "Jack Cibertec", Clave = "admin123",
+ClinPiura
 
-MediCita
-MediCita es una aplicación web integral para la gestión de una clínica médica digital, desarrollada bajo el patrón ASP.NET Core MVC con Razor Pages, Bootstrap 5 y SQL Server.
+ClinPiura es una aplicación web para la gestión integral de una clínica médica digital. Ha sido desarrollada utilizando el patrón ASP.NET Core MVC, con Razor Pages, Bootstrap 5 y SQL Server, siguiendo una arquitectura basada en servicios e inyección de dependencias.
 
-La plataforma permite la administración de citas médicas en tiempo real con lógicas de horarios inteligentes, una farmacia online con carrito de compras persistente, historiales clínicos y reportes avanzados, bajo un sistema de seguridad basado en roles.
+El sistema permite administrar citas médicas, usuarios, personal médico, farmacia en línea, ventas, historiales clínicos y reportes, bajo un esquema de seguridad por roles y autenticación mediante cookies.
+
+Credenciales por defecto
+
+Durante la primera ejecución del sistema, se crea automáticamente un usuario administrador mediante un proceso de inicialización (Seed).
+
+Credenciales iniciales:
+
+Correo: admin@medicita.com
+
+Nombre: Jack Cibertec
+
+Clave: admin123
+
+Rol: Administrador
+
+Se recomienda cambiar la contraseña luego del primer inicio de sesión.
 
 Características principales
-Gestión de Accesos y Roles
-Administrador: Gestión de usuarios, médico personal, catálogo de medicamentos y generación de informes.
-Médico: Visualización y control de citas asignadas y agenda diaria.
-Paciente: Reserva de citas, adquisición de medicamentos y consulta de historial personal.
-Sistema de Citas Inteligente
-Generación automática de disponibilidad: Mediante HorarioService, se proyecta la agenda de los médicos para los próximos 7 días tras su registro.
-Filtros de disponibilidad: Los pacientes visualizan turnos basados ​​en el día seleccionado, excluyendo horas pasadas y horarios previamente reservados.
-Configuración de jornada: Soporte técnico para exclusión de pausas de almuerzo y bloqueos de seguridad en tiempo real.
+Gestión de accesos y roles
+
+El sistema cuenta con control de acceso basado en roles:
+
+Administrador
+
+Gestión de usuarios del sistema
+
+Administración del personal médico
+
+Gestión del catálogo de medicamentos
+
+Visualización de reportes y estadísticas
+
+Médico
+
+Visualización de citas asignadas
+
+Gestión de agenda diaria
+
+Paciente
+
+Reserva de citas médicas
+
+Compra de medicamentos
+
+Consulta de historial clínico personal
+
+Sistema de citas médicas
+
+Generación automática de disponibilidad médica mediante HorarioService.
+
+Proyección de horarios para los próximos siete días al registrar un médico.
+
+Filtros de disponibilidad que excluyen horarios pasados y turnos ya reservados.
+
+Configuración de jornada laboral, incluyendo pausas de almuerzo y bloqueos de seguridad.
+
 Farmacia en línea
-Catálogo dinámico: Gestión de productos por categorías, imágenes, descripciones y sistema de promociones (formato porcentual).
-Carrito persistente: Almacenamiento de la selección de productos directamente en la base de datos para continuidad de sesión.
-Procesamiento de ventas: Registro transaccional con cálculo automático de subtotal, IGV y total, utilizando parámetros con valores de tabla (TVP) para optimizar operaciones complejas.
-Seguridad y Diseño
-Protección de datos: Implementación de hash SHA256 para el resguardo de credenciales.
-Inicialización del sistema: Configuración automática del administrador principal mediante SeedService al ejecutar la aplicación por primera vez.
-Interfaz de usuario: Diseño responsive con navegación dinámica según el rol del usuario y notificaciones interactivas.
+
+Catálogo dinámico de medicamentos organizado por categorías.
+
+Gestión de productos con imágenes, descripciones y promociones porcentuales.
+
+Carrito de compras persistente almacenado en la base de datos.
+
+Procesamiento de ventas con cálculo automático de subtotal, IGV y total.
+
+Uso de Table-Valued Parameters (TVP) para optimizar operaciones complejas.
+
+Seguridad y diseño
+
+Autenticación basada en cookies.
+
+Protección de credenciales mediante hash SHA256.
+
+Inicialización automática del usuario administrador mediante SeedService.
+
+Interfaz responsive con navegación dinámica según el rol del usuario.
+
+Manejo de sesiones con expiración configurable.
+
 Tecnologías utilizadas
+
 Backend: ASP.NET Core MVC (.NET 8)
-Persistencia de datos: ADO.NET con Procedimientos Almacenados
+
+Persistencia de datos: ADO.NET con procedimientos almacenados
+
 Base de datos: SQL Server
-Interfaz: Razor Pages, Bootstrap 5, SweetAlert2 y jQuery
-Requisitos del Entorno
-Visual Studio 2022 con carga de trabajo ASP.NET y desarrollo web.
-Kit de desarrollo de software .NET 8.0.
-SQL Server (LocalDB, Express o versión completa).
-Git.
+
+Frontend: Razor Pages, Bootstrap 5, SweetAlert2, jQuery
+
+Autenticación: Cookies
+
+Control de versiones: Git y GitHub
+
+Requisitos del entorno
+
+Visual Studio 2022 con carga de trabajo ASP.NET y desarrollo web
+
+.NET SDK 8.0
+
+SQL Server (LocalDB, Express o versión completa)
+
+Git
+
 Instalación y configuración
-Clonar el repositorio: git clone https://github.com/TU_USUARIO/MediCita.git
+Clonar el repositorio
+git clone https://github.com/Yax-CalleCas/Proyecto-final-ClinPiura.git
 
-Configurar la base de datos: Ejecutar los scripts de base de datos y procedimientos almacenados en su instancia de SQL Server.
+Configuración de la base de datos
 
-Actualizar la cadena de conexión: Modifique el archivo appsettings.json con los parámetros correspondientes a su servidor local.
+Ejecutar los scripts de creación de tablas y procedimientos almacenados en una instancia de SQL Server.
 
-Compilar y ejecutar: Iniciar el proyecto desde Visual Studio o mediante la línea de comandos con dotnet run.
+Configuración de la cadena de conexión
+
+Modificar el archivo appsettings.json según el entorno local:
+
+{
+  "ConnectionStrings": {
+    "CadenaSQL": "Server=LAPTOP-1E2VL582\\SQLEXPRESS;Database=BD_ClinPiura;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True"
+  }
+}
+
+Ejecución de la aplicación
+
+Desde Visual Studio o mediante la línea de comandos:
+
+dotnet run
+
+Configuración interna del sistema
+Registro de servicios
+
+La aplicación utiliza inyección de dependencias para desacoplar la lógica de negocio. Entre los principales servicios registrados se encuentran:
+
+Usuarios
+
+Citas médicas
+
+Medicamentos
+
+Ventas
+
+Reportes
+
+Horarios médicos
+
+Administración y estadísticas
+
+Autenticación y sesiones
+
+Autenticación mediante cookies.
+
+Tiempo de expiración de sesión: 20 minutos.
+
+Manejo de sesiones en memoria para mantener el estado del usuario autenticado.
+
+Rutas configuradas para inicio de sesión, cierre de sesión y acceso denegado.
+
+Inicialización automática (Seed)
+
+Durante el arranque de la aplicación, se ejecuta un proceso automático que verifica la existencia del usuario administrador y lo crea si no existe.
+
+Este proceso se ejecuta una sola vez y garantiza que el sistema siempre tenga un acceso administrativo inicial válido.
+
+Estado del proyecto
+
+Proyecto funcional, estructurado y orientado a la gestión clínica integral.
+Preparado para presentación académica y con posibilidad de ampliación futura.
