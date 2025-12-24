@@ -24,7 +24,7 @@ namespace MediCita.Web.Servicios.Implementacion
             // Solo crear el administrador
             var admin = new
             {
-                Correo = "admin@medicita.com",
+                Correo = "admin@clinpiura.com",
                 Nombre = "Jack Cibertec",
                 Clave = "admin123",
                 Rol = 1
