@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ClinPiura</title>
+
+    <!-- Google Fonts - Inter (muy usada en apps modernas) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Animate.css (opcional, pero queda bonito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- Tu CSS personalizado -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        :root {
+            --primary: #0AA3A3; /* Indigo principal */
+            --primary-dark: #1A9999;
+            --primary-light: #6366f1;
+            --secondary: #6b7280;
+            --success: #10b981;
+            --info: 
+#629129;
+            --danger: #ef4444;
+            --light-bg: #f8fafc;
+            --dark-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            color: #1e293b;
+        }
+
+        /* Navbar mejorado - modo oscuro suave */
+        .navbar-custom {
+            background: linear-gradient(135deg, #1A9999 0%, #1A9999 100%);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.25);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            transition: all 0.3s ease;
+        }
+
+            .navbar-brand:hover {
+                transform: translateY(-2px);
+            }
+
+        .nav-link-custom {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+            .nav-link-custom:hover,
+            .nav-link-custom.active {
+                color: #e0e7ff !important;
+                background: rgba(255,255,255,0.12);
+                border-radius: 6px;
+            }
+
+        /* Botones glass/pill */
+        .btn-glass {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            transition: all 0.3s;
+        }
+
+            .btn-glass:hover {
+                background: rgba(255,255,255,0.25);
+                transform: translateY(-2px);
+            }
+
+        /* User pill */
+        .user-pill {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Footer moderno */
+        .modern-footer {
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            color: #cbd5e1;
+            border-top: 4px solid var(--primary);
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+            .social-icon:hover {
+                background: var(--primary);
+                transform: translateY(-3px);
+            }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center"
+                   asp-controller="@(User.Identity!.IsAuthenticated ? "Acceso" : "Home")"
+                   asp-action="@(User.Identity!.IsAuthenticated ? "RedireccionRol" : "Index")">
+                    <i class="bi bi-hospital-fill fs-3 me-2 text-white"></i>
+                    <span>Clin<span class="fw-light text-white-50">Piura</span></span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if (User.Identity!.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Admin" asp-action="Dashboard">
+                                        <i class="bi bi-grid-1x2-fill me-1"></i> Panel
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Medicamentos" asp-action="Index">
+                                        <i class="bi bi-capsule me-1"></i> Farmacia
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="AdminUsuarios" asp-action="Index">
+                                        <i class="bi bi-people-fill me-1"></i> Usuarios
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Reporte" asp-action="Index">
+                                        <i class="bi bi-bar-chart-line-fill me-1"></i> Reportes
+                                    </a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("Medico"))
+
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Medico" asp-action="Index">
+                                        <i class="bi bi-grid-1x2-fill me-1"></i> Panel
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle nav-link-custom" href="#" data-bs-toggle="dropdown">
+                                        <i class="bi bi-stethoscope me-1"></i> Gestión Médica
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                        <li><a class="dropdown-item" asp-controller="Citas" asp-action="MisCitasMedico"><i class="bi bi-calendar-check me-2 text-primary"></i>Mis citas</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Citas" asp-action="PanelMedico"><i class="bi bi-layout-text-window-reverse me-2 text-primary"></i>Panel operativo</a></li>
+                                    </ul>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("Paciente"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Paciente" asp-action="Index">
+                                        <i class="bi bi-grid-1x2-fill me-1"></i> Panel
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Venta" asp-action="Catalogo">Tienda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Citas" asp-action="Crear">Reservar Cita</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-custom" asp-controller="Citas" asp-action="MisCitasPaciente">Mis Registros</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto align-items-center gap-2">
+                        @if (User.Identity!.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="user-pill dropdown-toggle d-flex align-items-center text-decoration-none" href="#" data-bs-toggle="dropdown">
+                                    <img src="https://ui-avatars.com/api/?name=@User.Identity.Name&background=4338ca&color=fff&size=128" class="rounded-circle me-2" width="32" height="32">
+                                    <span class="text-white fw-medium">@User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item text-danger fw-bold" href="javascript:void(0)" onclick="confirmarSalida()">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Salir
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <button type="button" class="btn btn-glass px-4 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Acceso
+                                </button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4 mb-5">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="modern-footer mt-auto">
+        <div class="container">
+            <div class="row py-5 gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold text-white mb-3">ClinPiura</h5>
+                    <p class="text-light opacity-75 small">Atención médica de calidad con tecnología de punta. Tu salud, nuestra prioridad.</p>
+                    <div class="social-links d-flex gap-3 mt-3">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase">Contacto</h6>
+                    <ul class="list-unstyled text-light opacity-75 small">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>Calle Libertad 456, Piura</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i>(073) 304050</li>
+                        <li><i class="bi bi-envelope-fill me-2"></i>contacto@clinpiura.pe</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12 text-center text-lg-end">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase">Desarrollado por</h6>
+                    <p class="text-light opacity-75 small mb-0"> Yaxon Calle Castillo</p>
+                    <p class="small text-white-50 mt-2">Construido con ❤️ y ASP.NET Core</p>
+                </div>
+            </div>
+
+            <div class="border-top border-light border-opacity-25 py-3 text-center">
+                <p class="mb-0 small text-light opacity-50">© 2025 ClinPiura - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function confirmarSalida() {
+            Swal.fire({
+                title: '¿Cerrar sesión?',
+                text: "Tu sesión será finalizada de forma segura.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4f46e5',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Sí, salir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '@Url.Action("Salir", "Home")';
+                }
+            });
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

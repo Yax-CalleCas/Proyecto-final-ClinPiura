@@ -1,0 +1,348 @@
+﻿@{
+    ViewData["Title"] = "Bienvenido";
+}
+
+<!-- HERO CAROUSEL -->
+<div class="hero-container shadow mb-5">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <img src="https://examenesmedicosocupacionales.com.pe/wp-content/uploads/2024/12/certificado-medico-de-buena-salud-todo-lo-que-necesitas-saber-1-examenes-medicos-ocupacionales.webp"
+                     class="d-block w-100 h-100" style="object-fit: cover; filter: brightness(0.45);" alt="Salud">
+                <div class="carousel-caption text-start">
+                    <div class="container">
+                        <span class="badge bg-white text-dark mb-4 px-4 py-2 fs-6 rounded-pill fw-bold">
+                            SISTEMA INTEGRAL DE SALUD
+                        </span>
+                        <h1 class="display-3 fw-bold mb-3">
+                            Tu Salud en <span class="text-white">Buenas Manos</span>
+                        </h1>
+                        <p class="fs-4 mb-4 text-white opacity-90">
+                            Reserva citas y compra medicamentos de forma rápida y segura.
+                        </p>
+                        <button class="btn btn-primary-teal btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg"
+                                data-bs-toggle="modal" data-bs-target="#loginModal">
+                            COMENZAR AHORA
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="https://img.freepik.com/fotos-premium/doctor-sosteniendo-reloj_38810-6621.jpg"
+                     class="d-block w-100 h-100" style="object-fit: cover; filter: brightness(0.45);" alt="Farmacia">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <h2 class="display-4 fw-bold text-white">Farmacia Digital 24/7</h2>
+                        <p class="fs-4 text-white opacity-90 mb-4">
+                            Stock en tiempo real – Sin filas, sin esperas
+                        </p>
+                        <a asp-controller="Venta" asp-action="Catalogo"
+                           class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fw-bold">
+                            Explorar Tienda
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="https://www.hospitalvrg.gob.pe/wp-content/uploads/2024/07/medium-shot-scientists-posing-together-1-scaled.jpg"
+                     class="d-block w-100 h-100" style="object-fit: cover; filter: brightness(0.45);" alt="Médicos">
+                <div class="carousel-caption text-end">
+                    <div class="container">
+                        <h2 class="display-4 fw-bold text-white">Especialistas de Confianza</h2>
+                        <p class="fs-4 text-white opacity-90 mb-4">
+                            Reserva con los mejores médicos certificados
+                        </p>
+                        <a asp-controller="Citas" asp-action="Crear"
+                           class="btn btn-primary-teal btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg">
+                            Reservar Cita
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECCIÓN DE SERVICIOS -->
+<div class="container mb-5 pb-5">
+    <div class="text-center mb-5">
+        <h6 class="text-uppercase fw-bold text-primary-teal tracking-widest mb-2" style="letter-spacing: 3px;">
+            NUESTROS SERVICIOS
+        </h6>
+        <h2 class="fw-bold display-5">Soluciones integrales para tu salud</h2>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <!-- Card 1 - Gestión de Citas -->
+        <div class="col-md-4">
+            <div class="card hover-up text-center p-4 border-0 shadow-sm h-100">
+                <div class="service-icon">
+                    <i class="bi bi-calendar2-heart"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Gestión de Citas</h4>
+                <p class="text-muted px-3 mb-4">Reserva y administra tus consultas fácilmente.</p>
+                <div class="mt-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                     
+                      
+                    }
+                    else
+                    {
+                        <a asp-controller="Acceso" asp-action="Login" 
+                           class="btn btn-outline-teal rounded-pill px-5 py-2 fw-bold">
+                            Iniciar Sesión
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 - Farmacia Online (PROTEGIDA) -->
+        <div class="col-md-4">
+            <div class="card hover-up text-center p-4 border-0 shadow-sm h-100">
+                <div class="service-icon">
+                    <i class="bi bi-prescription2"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Farmacia Online</h4>
+                <p class="text-muted px-3 mb-4">Compra medicamentos con stock en tiempo real.</p>
+                <div class="mt-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Venta" asp-action="Catalogo" 
+                           class="btn btn-outline-teal rounded-pill px-5 py-2 fw-bold">
+                            Ir a Tienda
+                        </a>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-outline-teal rounded-pill px-5 py-2 fw-bold"
+                                data-bs-toggle="modal" data-bs-target="#requireLoginModal">
+                            Ir a Tienda
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 - Historial Médico (PROTEGIDO) -->
+        <div class="col-md-4">
+            <div class="card hover-up text-center p-4 border-0 shadow-sm h-100">
+                <div class="service-icon">
+                    <i class="bi bi-file-earmark-medical"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Historial Médico</h4>
+                <p class="text-muted px-3 mb-4">Consulta tu historial clínico seguro.</p>
+                <div class="mt-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Reporte" asp-action="Index" 
+                           class="btn btn-outline-teal rounded-pill px-5 py-2 fw-bold">
+                            Ver Historial
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Acceso" asp-action="Login" 
+                           class="btn btn-outline-teal rounded-pill px-5 py-2 fw-bold">
+                            Iniciar Sesión
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NUEVA SECCIÓN: MÉDICOS DESTACADOS -->
+<div class="container py-5 bg-light rounded-4 mb-5">
+    <div class="text-center mb-5">
+        <h6 class="text-uppercase fw-bold text-primary-teal tracking-widest mb-2" style="letter-spacing: 3px;">
+            ESPECIALISTAS DESTACADOS
+        </h6>
+        <h2 class="fw-bold display-5">Nuestros mejores médicos</h2>
+    </div>
+
+    <div class="row g-4">
+        <!-- Médico 1 - 5 estrellas -->
+        <div class="col-md-4">
+            <div class="card doctor-card shadow-sm">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/026/375/249/small/ai-generative-portrait-of-confident-male-doctor-in-white-coat-and-stethoscope-standing-with-arms-crossed-and-looking-at-camera-photo.jpg"
+                     class="doctor-img card-img-top" alt="Dr. Carlos Mendoza">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold mb-2">Dr. Carlos Castillo </h5>
+                    <p class="text-muted mb-2">Cardiología</p>
+                    <div class="star-rating mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="small text-muted">"Atención personalizada y diagnóstico preciso."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Médico 2 - 5 estrellas -->
+        <div class="col-md-4">
+            <div class="card doctor-card shadow-sm">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                     class="doctor-img card-img-top" alt="Dra. Laura Vargas">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold mb-2">Dra. Lesli Carbajal </h5>
+                    <p class="text-muted mb-2">Pediatría</p>
+                    <div class="star-rating mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="small text-muted">"Cariño y profesionalismo con los más pequeños."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Médico 3 - 4 estrellas -->
+        <div class="col-md-4">
+            <div class="card doctor-card shadow-sm">
+                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                     class="doctor-img card-img-top" alt="Dr. Javier Ruiz">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold mb-2">Dr. Javier Ruiz</h5>
+                    <p class="text-muted mb-2">Dermatología</p>
+                    <div class="star-rating mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                    </div>
+                    <p class="small text-muted">"Tratamientos avanzados para piel saludable."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE LOGIN OBLIGATORIO PARA TIENDA -->
+<div class="modal fade" id="requireLoginModal" tabindex="-1" aria-labelledby="requireLoginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-primary-teal text-white border-0">
+                <h5 class="modal-title fw-bold" id="requireLoginLabel">¡Inicia sesión para continuar!</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-5">
+                <i class="bi bi-lock-fill display-1 text-primary-teal mb-4"></i>
+                <h5 class="fw-bold mb-3">Accede a tu cuenta</h5>
+                <p class="text-muted mb-4">Para ver el catálogo y comprar medicamentos, debes estar registrado.</p>
+                <button type="button" class="btn btn-primary-teal btn-lg px-5 rounded-pill"
+                        data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">
+                    Iniciar Sesión
+                </button>
+                <p class="mt-4 small text-muted">
+                    ¿Aún no tienes cuenta?
+                    <a asp-controller="Acceso" asp-action="Registro" class="text-primary-teal fw-bold">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL LOGIN (con colores actualizados) -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg overflow-hidden rounded-4">
+            <div class="row g-0">
+                <!-- Lado izquierdo - Imagen -->
+                <div class="col-md-5 d-none d-md-block"
+                     style="background: linear-gradient(rgba(25, 140, 134, 0.85), rgba(25, 140, 134, 0.85)),
+                            url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80') center/cover;">
+                    <div class="h-100 d-flex align-items-center justify-content-center p-5 text-center text-white">
+                        <div>
+                            <i class="bi bi-shield-lock-fill display-1 mb-4"></i>
+                            <h4 class="fw-bold mb-3">Acceso Seguro</h4>
+                            <p class="small opacity-90">Tus datos protegidos con los más altos estándares de seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado derecho - Formulario -->
+                <div class="col-md-7 bg-white p-5">
+                    <div class="text-end mb-3">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold mb-1">Iniciar Sesión</h3>
+                        <p class="text-muted">Bienvenido a MediCita</p>
+                    </div>
+
+                    <form asp-controller="Acceso" asp-action="Login" method="post">
+                        <div class="form-floating mb-4">
+                            <input type="email" name="correo" class="form-control" id="logEmail" placeholder="Correo" required autofocus />
+                            <label for="logEmail">Correo electrónico</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" name="clave" class="form-control" id="logClave" placeholder="Contraseña" required />
+                            <label for="logClave">Contraseña</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-teal w-100 rounded-pill py-3 fw-bold shadow">
+                            INGRESAR
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            ¿Aún no tienes cuenta?
+                            <a asp-controller="Acceso" asp-action="Registro" class="text-primary-teal fw-bold text-decoration-none">
+                                Regístrate aquí
+                            </a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold display-5">Encuéntranos en Piura</h2>
+            <p class="text-muted lead">Visítanos en nuestra sede principal</p>
+        </div>
+
+        <div class="card border-0 shadow-lg">
+            <div class="map-header text-center">
+                <h5 class="mb-1 fw-bold">Clínica MediCita Piura</h5>
+                <p class="mb-0 small">Calle Las Dalias A-12, Urb. Miraflores, Castilla, Piura</p>
+            </div>
+            <div class="map-container">
+                <!-- Mapa embebido de Google Maps (coordenadas reales de Piura - Clínica Auna) -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.000!2d-80.622506!3d-5.194324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMTEnMzkuNiJTIDgwwrAzNy0yMS4wIlc!5e0!3m2!1ses-419!2spe!4v1735000000000"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="card-footer bg-white text-center py-3">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=-5.194324,-80.622506" target="_blank"
+                   class="btn btn-outline-teal btn-lg px-5">
+                    <i class="bi bi-geo-alt-fill me-2"></i> Cómo llegar
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link href="~/css/Home.css" rel="stylesheet" />
+<script>
+    // Si alguien intenta entrar a la tienda por URL directa sin login
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('a[href*="Venta/Catalogo"]') && !@User.Identity.IsAuthenticated.ToString().ToLower()) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('requireLoginModal'));
+            modal.show();
+        }
+    });
+</script>

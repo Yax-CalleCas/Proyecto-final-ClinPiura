@@ -1,0 +1,185 @@
+﻿:root {
+    --primary-teal: #198C86;
+    --primary-light: #20c997;
+    --primary-dark: #136c67;
+    --dark-bg: #0f2b2f;
+    --light-bg: #f8f9fa;
+    --text-dark: #212529;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+/* Hero Carousel */
+.hero-container {
+    border-radius: 0 0 2.5rem 2.5rem;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(25, 140, 134, 0.25);
+}
+
+.carousel-item {
+    height: 580px;
+}
+
+.carousel-caption {
+    background: linear-gradient(to top, rgba(15, 43, 47, 0.85) 0%, transparent 60%);
+    bottom: 0;
+    padding: 5rem 3rem 4rem;
+}
+
+/* Cards & Services */
+.hover-up {
+    transition: all 0.4s ease;
+    border: none !important;
+    border-radius: 1.25rem;
+}
+
+    .hover-up:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(25, 140, 134, 0.22) !important;
+    }
+
+.service-icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.75rem;
+    background: rgba(25, 140, 134, 0.1);
+    color: var(--primary-teal);
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    font-size: 2.2rem;
+}
+
+.hover-up:hover .service-icon {
+    background: var(--primary-teal);
+    color: white;
+    transform: scale(1.12);
+}
+
+/* Buttons */
+.btn-primary-teal {
+    background-color: var(--primary-teal);
+    border-color: var(--primary-teal);
+    color: white;
+}
+
+    .btn-primary-teal:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        color: white;
+    }
+
+.btn-outline-teal {
+    color: var(--primary-teal);
+    border-color: var(--primary-teal);
+}
+
+    .btn-outline-teal:hover {
+        background-color: var(--primary-teal);
+        color: white;
+    }
+
+/* Doctors */
+.doctor-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+}
+
+.doctor-img {
+    height: 220px;
+    object-fit: cover;
+}
+
+
+.map-header {
+    background: var(--primary-teal);
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+/* Sección general */
+section.py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: linear-gradient(120deg, #f0f4ff 0%, #ffffff 100%);
+}
+
+    /* Encabezado */
+    section.py-5 .text-center h2 {
+        font-size: 2rem;
+        color: #1e3a8a;
+    }
+
+    section.py-5 .text-center p {
+        font-size: 1rem;
+        color: #64748b;
+    }
+
+    /* Card mapa */
+    section.py-5 .card {
+        border-radius: 15px;
+        overflow: hidden;
+        max-width: 700px;
+        margin: 0 auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        section.py-5 .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+    /* Header de la card */
+    section.py-5 .map-header {
+        padding: 1rem 1.5rem;
+        background-color: #e0e7ff;
+        border-bottom: 1px solid #c7d2fe;
+    }
+
+        section.py-5 .map-header h5 {
+            margin-bottom: 0.25rem;
+            color: #1e3a8a;
+            font-size: 1.2rem;
+        }
+
+        section.py-5 .map-header p {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+    /* Contenedor de mapa */
+    section.py-5 .map-container {
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0;
+    }
+
+    /* Footer de la card */
+    section.py-5 .card-footer {
+        background-color: #ffffff;
+        border-top: 1px solid #c7d2fe;
+    }
+
+    section.py-5 .btn-outline-teal {
+        color: #0d9488;
+        border-color: #0d9488;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+        section.py-5 .btn-outline-teal:hover {
+            background-color: #0d9488;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+
